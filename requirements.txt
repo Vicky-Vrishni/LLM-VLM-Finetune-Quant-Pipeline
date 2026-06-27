@@ -10,7 +10,6 @@ protobuf
 einops
 
 # Quantization
-auto-gptq
 autoawq
 
 # Evaluation
