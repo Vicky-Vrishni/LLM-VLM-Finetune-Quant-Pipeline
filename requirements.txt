@@ -1,0 +1,38 @@
+torch>=2.1.0
+transformers>=4.46.0
+peft>=0.13.0
+bitsandbytes>=0.44.0
+accelerate>=1.0.0
+datasets>=3.0.0
+trl>=0.11.0
+sentencepiece
+protobuf
+einops
+
+# Quantization
+auto-gptq
+autoawq
+
+# Evaluation
+evaluate
+scikit-learn
+
+# Experiment tracking
+wandb
+
+# API
+fastapi
+uvicorn[standard]
+pydantic
+
+# Demo UI
+gradio
+
+# Image processing (VLM)
+pillow
+opencv-python-headless
+
+# Utilities
+pyyaml
+tqdm
+numpy

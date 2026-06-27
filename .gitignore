@@ -1,0 +1,63 @@
+# ===========================================
+# Python
+# ===========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+
+# ===========================================
+# Model outputs & checkpoints (bohot bade hote hain - Git me nahi rakhte)
+# ===========================================
+outputs/
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+checkpoints/
+
+# ===========================================
+# Datasets (locally cache hote hain - Git me nahi rakhte)
+# ===========================================
+data/raw/
+data/processed/
+*.csv
+*.json
+!configs/*.json
+
+# ===========================================
+# Logs
+# ===========================================
+logs/
+*.log
+wandb/
+
+# ===========================================
+# llama.cpp (quantization ke time auto-clone hota hai)
+# ===========================================
+llama.cpp/
+
+# ===========================================
+# Environment variables (secrets - kabhi commit nahi karna)
+# ===========================================
+.env
+
+# ===========================================
+# IDE / OS files
+# ===========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ===========================================
+# Jupyter
+# ===========================================
+.ipynb_checkpoints/
+
