@@ -1,16 +1,3 @@
-"""
-Dataset Loader Module
------------------------
-Ye module LLM aur VLM dono ke liye dataset loading, formatting,
-aur tokenization handle karta hai. Goal hai ek unified interface
-dena taaki training scripts ko ye sochna na pade ki data kaha se
-aaya hai ya kis format me hai.
-
-Supports:
-  - LLM: instruction-tuning format (Alpaca-style: instruction/context/response)
-  - VLM: image-text conversation format
-"""
-
 from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer, AutoProcessor
 from typing import Dict, Any, Tuple
@@ -29,26 +16,6 @@ logger = get_logger(__name__)
 # ==========================================================
 
 def format_llm_prompt(example: Dict[str, Any], config: Dict[str, Any]) -> str:
-    """
-    Ek single example ko Alpaca-style instruction format me convert karta hai.
-
-    Format:
-        ### Instruction:
-        {instruction}
-
-        ### Context: (agar context hai to)
-        {context}
-
-        ### Response:
-        {response}
-
-    Args:
-        example: Dataset ka ek row (dictionary).
-        config: dataset config (field names batata hai).
-
-    Returns:
-        Ek formatted string jo model ko training ke liye di jayegi.
-    """
     instruction = example.get(config["text_field"], "")
     response = example.get(config["response_field"], "")
     context = example.get(config.get("context_field", ""), "")
@@ -69,22 +36,14 @@ def format_llm_prompt(example: Dict[str, Any], config: Dict[str, Any]) -> str:
 
 
 def load_llm_dataset(config: Dict[str, Any], tokenizer: AutoTokenizer) -> Tuple[Dataset, Dataset]:
-    """
-    HuggingFace Hub se LLM instruction-tuning dataset load karta hai,
-    use formatted text me convert karta hai, tokenize karta hai,
-    aur train/validation split return karta hai.
-
-    Args:
-        config: 'dataset' section from llm_finetune.yaml
-        tokenizer: Pretrained tokenizer (model ke saath match hona chahiye)
-
-    Returns:
-        (train_dataset, val_dataset) tuple
-    """
     logger.info(f"Loading LLM dataset: {config['name']}")
 
     raw_dataset = load_dataset(config["name"], split=config["split"])
     logger.info(f"Dataset loaded. Total examples: {len(raw_dataset)}")
+    max_samples = config.get("max_train_samples", None)
+    if max_samples and max_samples < len(raw_dataset):
+        raw_dataset = raw_dataset.select(range(max_samples))
+        logger.info(f"Dataset trimmed to {max_samples} examples (for faster demo training).")
 
     def format_and_tokenize(example):
         text = format_llm_prompt(example, config)
@@ -119,22 +78,6 @@ def load_llm_dataset(config: Dict[str, Any], tokenizer: AutoTokenizer) -> Tuple[
 # ==========================================================
 
 def format_vlm_conversation(example: Dict[str, Any], config: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Ek VLM example (image + conversation) ko processor-ready format me convert karta hai.
-
-    Expected raw format:
-        {
-            "images": [PIL.Image, ...],
-            "texts": [{"user": "...", "assistant": "..."}, ...]
-        }
-
-    Args:
-        example: Dataset ka ek row.
-        config: 'dataset' section from vlm_finetune.yaml
-
-    Returns:
-        Dictionary jisme 'image' aur 'conversation' (chat-template-ready list) hai.
-    """
     images = example.get(config["image_field"], [])
     texts = example.get(config["conversation_field"], [])
 
@@ -162,18 +105,6 @@ def format_vlm_conversation(example: Dict[str, Any], config: Dict[str, Any]) -> 
 
 
 def load_vlm_dataset(config: Dict[str, Any], processor: AutoProcessor) -> Tuple[Dataset, Dataset]:
-    """
-    HuggingFace Hub se VLM (image-text) dataset load karta hai,
-    conversation format me convert karta hai, processor se tokenize/process karta hai,
-    aur train/validation split return karta hai.
-
-    Args:
-        config: 'dataset' section from vlm_finetune.yaml
-        processor: Pretrained VLM processor (image + text dono handle karta hai)
-
-    Returns:
-        (train_dataset, val_dataset) tuple
-    """
     logger.info(f"Loading VLM dataset: {config['name']} (subset: {config.get('subset', 'default')})")
 
     if config.get("subset"):
@@ -231,21 +162,6 @@ def load_dataset_for_training(
     tokenizer_or_processor: Any,
     model_type: str = "llm",
 ) -> Tuple[Dataset, Dataset]:
-    """
-    Single entry point jo training scripts use karenge.
-    model_type ke hisaab se sahi loader function call karta hai.
-
-    Args:
-        config: dataset config dictionary (YAML se loaded)
-        tokenizer_or_processor: LLM ke liye tokenizer, VLM ke liye processor
-        model_type: "llm" ya "vlm"
-
-    Returns:
-        (train_dataset, val_dataset) tuple
-
-    Raises:
-        ValueError: agar model_type "llm" ya "vlm" ke alawa kuch ho.
-    """
     if model_type == "llm":
         return load_llm_dataset(config, tokenizer_or_processor)
     elif model_type == "vlm":
@@ -255,8 +171,6 @@ def load_dataset_for_training(
 
 
 if __name__ == "__main__":
-    # Quick test - LLM dataset loading check karne ke liye
-    # (Ye tab hi run hoga jab tum directly is file ko execute karoge)
     sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "utils"))
     from config_loader import load_config
 
