@@ -25,7 +25,7 @@ gguf:
 
 # ---------- Method 3: AWQ (production-grade serving, best speed) ----------
 awq:
-  enabled: true
+  enabled: false
   w_bit: 4
   q_group_size: 128
   zero_point: true

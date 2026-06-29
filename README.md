@@ -243,6 +243,12 @@ docker-compose -f docker/docker-compose.yaml up --build
 
 ---
 
+## ⚠️ Known Limitations
+
+- **AWQ quantization:** The `autoawq` library currently has a compatibility issue with newer versions of `transformers` (specifically around the `Qwen2Attention.forward()` signature), which causes the quantization step to fail. The pipeline code for AWQ (`src/quantization/quantize_awq.py`) is fully implemented and will work once `autoawq` releases an update compatible with the latest `transformers`. This is currently disabled in `configs/quantization.yaml` (`awq.enabled: false`). bitsandbytes and GGUF quantization are fully functional and tested.
+
+---
+
 ## 🔮 Future Improvements
 
 - Add vLLM-based high-throughput serving as an alternative inference backend
