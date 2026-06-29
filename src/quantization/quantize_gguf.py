@@ -65,7 +65,7 @@ def convert_to_gguf_fp16(merged_model_dir: str, output_dir: str) -> str:
 
 
 def quantize_gguf_levels(fp16_gguf_path: str, output_dir: str, quant_levels: list):
-    quantize_binary = os.path.join(LLAMA_CPP_DIR, "llama-quantize")
+    quantize_binary = os.path.join(LLAMA_CPP_DIR, "build", "bin", "llama-quantize")
 
     for level in quant_levels:
         output_path = os.path.join(output_dir, f"model-{level}.gguf")
