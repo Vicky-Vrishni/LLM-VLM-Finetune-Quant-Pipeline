@@ -194,6 +194,22 @@ uvicorn api.main:app --host 0.0.0.0 --port 8000
 # Swagger docs available at http://localhost:8000/docs
 ```
 
+**Example request:**
+```bash
+curl -X POST "http://localhost:8000/generate/text" \
+  -H "Content-Type: application/json" \
+  -d '{"prompt": "What is deep learning?", "max_new_tokens": 200, "temperature": 0.7}'
+```
+
+**Example response:**
+```json
+{
+  "generated_text": "Deep learning is a subset of machine learning...",
+  "prompt": "What is deep learning?",
+  "latency_ms": 1842.3
+}
+```
+
 ### 6. Launch Interactive Demo
 
 ```bash
