@@ -209,25 +209,27 @@ docker-compose -f docker/docker-compose.yaml up --build
 
 ## 📊 Results
 
-> **Note:** The table below is populated automatically by running `src/evaluation/evaluate.py`, which generates `outputs/quantization_report.json`. Replace these placeholder values with your actual run results before sharing this project.
+Results from fine-tuning `Qwen2.5-1.5B-Instruct` on the Dolly-15k dataset using QLoRA, evaluated on a held-out sample.
 
 **Fine-Tuning Impact (Perplexity — lower is better):**
 
 | Model | Perplexity |
 |---|---|
-| Base model (pre-fine-tuning) | _e.g. 12.4_ |
-| Fine-tuned model (QLoRA) | _e.g. 7.8_ |
-| **Improvement** | _e.g. ~37%_ |
+| Base model (pre-fine-tuning) | 15.14 |
+| Fine-tuned model (QLoRA) | 7.49 |
+| **Improvement** | **~50.6%** |
 
 **Quantization Comparison:**
 
-| Method | Size | Best Use Case |
-|---|---|---|
-| Original (FP16 merged) | _e.g. 3.1 GB_ | Baseline reference |
-| bitsandbytes (4-bit) | _e.g. 0.9 GB_ | Fast local development/testing |
-| GGUF (Q4_K_M) | _e.g. 0.85 GB_ | CPU / edge / offline deployment |
-| AWQ (4-bit) | _e.g. 0.95 GB_ | Production serving (fastest inference) |
+| Method | Size | Reduction vs. FP16 | Best Use Case |
+|---|---|---|---|
+| Original (FP16 merged) | 2.96 GB | — | Baseline reference |
+| GGUF Q8_0 | 1.57 GB | ~47% | High-fidelity CPU inference |
+| GGUF Q5_K_M | 1.07 GB | ~64% | Balanced size/quality for edge devices |
+| GGUF Q4_K_M | 0.94 GB | ~68% | Maximum compression for CPU/edge deployment |
+| bitsandbytes (4-bit) | runtime quantized | — | Fast local development/testing (quantizes on load, not stored on disk) |
 
+*Note: bitsandbytes performs quantization at model-load time rather than producing a separate compressed file on disk, so its size isn't directly comparable to the GGUF files above. AWQ quantization is implemented but currently disabled — see Known Limitations.*
 ---
 
 ## 🛠️ Tech Stack
