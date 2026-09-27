@@ -1,4 +1,4 @@
-# 🚀 Fine-Tuning & Quantization Pipeline for LLMs/VLMs
+#  Fine-Tuning & Quantization Pipeline for LLMs/VLMs
 
 A production-grade pipeline for fine-tuning and quantizing open-source Large Language Models (LLMs) and Vision-Language Models (VLMs). Supports QLoRA fine-tuning, multi-format quantization (bitsandbytes, GGUF, AWQ), FastAPI serving, and Docker deployment.
 
