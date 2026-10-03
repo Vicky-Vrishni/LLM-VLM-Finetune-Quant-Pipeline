@@ -4,7 +4,6 @@ from typing import Dict, Any, Tuple
 import sys
 import os
 
-# src/utils ko import path me add karna taaki logger use kar sakein
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "utils"))
 from logger import get_logger
 
