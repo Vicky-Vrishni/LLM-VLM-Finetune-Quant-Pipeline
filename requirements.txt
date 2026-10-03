@@ -11,23 +11,12 @@ einops
 autoawq
 evaluate
 scikit-learn
-
-# Experiment tracking
 wandb
-
-# API
 fastapi
-uvicorn[standard]
 pydantic
-
-# Demo UI
 gradio
-
-# Image processing (VLM)
 pillow
 opencv-python-headless
-
-# Utilities
 pyyaml
 tqdm
 numpy
