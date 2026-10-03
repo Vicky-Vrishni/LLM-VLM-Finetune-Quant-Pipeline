@@ -27,7 +27,7 @@ lora:
 
 dataset:
   name: "HuggingFaceM4/the_cauldron"
-  subset: "ai2d"              # chhota, clean subset demo ke liye
+  subset: "ai2d"              # small and clean for demo
   split: "train"
   image_field: "images"
   conversation_field: "texts"
