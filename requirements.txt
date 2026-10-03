@@ -8,11 +8,7 @@ trl>=0.11.0
 sentencepiece
 protobuf
 einops
-
-# Quantization
 autoawq
-
-# Evaluation
 evaluate
 scikit-learn
 
