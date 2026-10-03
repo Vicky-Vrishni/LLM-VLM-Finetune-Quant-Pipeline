@@ -38,7 +38,7 @@ def generate_llm_response(prompt: str, max_new_tokens: int, temperature: float) 
         return f"Error: Model load nahi hua. Details: {MODEL_LOAD_ERROR}"
 
     if not prompt or not prompt.strip():
-        return "Kripya ek prompt likhein."
+        return "Write a prompt"
 
     start_time = time.time()
     response = engine.generate(
