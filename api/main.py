@@ -47,7 +47,7 @@ async def lifespan(app: FastAPI):
         logger.error(f"Failed to load model: {e}")
         model_engine = None
 
-    yield  # API requests yaha serve hote hain
+    yield  # API requests are served here
 
     logger.info("Shutting down API server.")
 
@@ -59,7 +59,7 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS - taaki frontend/demo UI alag domain se bhi API call kar sake
+# CORS - It can call the API that from different frontend/demo UI.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
