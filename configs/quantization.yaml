@@ -9,7 +9,7 @@ input:
 # Quantization library that help the model quantization.
 
 # ---------- Method 1: bitsandbytes (fast, good for quick serving) ----------
-bitsandbytes:
+bitsandbytes: # bitsandbytes is a quantization library that help to reduce higher bits(16 bits) into lower bits(4 bits) without loosing any feature of its model. 
   enabled: true
   load_in_4bit: true
   bnb_4bit_quant_type: "nf4"
