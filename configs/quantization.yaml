@@ -4,7 +4,9 @@
 
 input:
   finetuned_model_path: "outputs/llm_finetuned/final_model"
-  base_model: "Qwen/Qwen2.5-1.5B-Instruct" #This LLM model use for qunatization 
+  base_model: "Qwen/Qwen2.5-1.5B-Instruct" #This LLM model use for qunatization.
+
+# Quantization library that help the model quantization.
 
 # ---------- Method 1: bitsandbytes (fast, good for quick serving) ----------
 bitsandbytes:
