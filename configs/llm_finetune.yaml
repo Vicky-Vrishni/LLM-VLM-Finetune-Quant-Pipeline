@@ -29,7 +29,12 @@ lora:
     - "down_proj"
 
 dataset:
-  name: "databricks/databricks-dolly-15k"
+  name: "databricks/databricks-dolly-15k" '''
+  human-generated instruction-following dataset designed to train large language models
+  (LLMs) to exhibit interactive behavior similar to ChatGPT. It contains over 15,000 
+  records created by Databricks employees across various instruction categories.
+
+  '''
   split: "train"
   text_field: "instruction"
   response_field: "response"
@@ -61,3 +66,7 @@ training:
 wandb:
   project: "llm-vlm-finetune-quant-pipeline"
   run_name: "qwen2.5-1.5b-qlora-dolly"
+
+
+
+  
