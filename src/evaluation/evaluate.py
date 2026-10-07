@@ -132,7 +132,7 @@ def measure_inference_speed(model, tokenizer, prompt: str, device: str, num_runs
             output = model.generate(**inputs, max_new_tokens=50, do_sample=False)
             end = time.time()
 
-            latencies.append((end - start) * 1000)  # ms me convert
+            latencies.append((end - start) * 1000) 
             total_tokens_generated += output.shape[1] - inputs["input_ids"].shape[1]
 
     avg_latency_ms = sum(latencies) / len(latencies)
