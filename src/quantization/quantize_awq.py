@@ -60,7 +60,7 @@ def quantize_with_awq(merged_model_dir: str, output_dir: str, awq_cfg: dict):
         awq_cfg.get("calibration_samples", 128),
     )
 
-    logger.info("Starting AWQ quantization (ye kuch minutes le sakta hai)...")
+    logger.info()
     start_time = time.time()
 
     model.quantize(
