@@ -68,14 +68,14 @@ def main():
     logger.info(f"Loading config from: {args.config}")
     config = load_config(args.config)
 
-    # ---------- Step 1: Model + Tokenizer Load ----------
+    # ---------- Step 1: Loading Model and Tokenizer----------
     model, tokenizer = load_model_and_tokenizer(config)
 
-    # ---------- Step 2: LoRA Apply karo ----------
+    # ---------- Step 2: Apply LoRA ----------
     logger.info("Applying LoRA adapters to the model...")
     model = prepare_model_for_lora(model, config["lora"])
 
-    # ---------- Step 3: Dataset Load karo ----------
+    # ---------- Step 3:upload Dataset  ----------
     logger.info("Loading and tokenizing dataset...")
     train_dataset, val_dataset = load_dataset_for_training(
         config["dataset"], tokenizer, model_type="llm"
@@ -95,7 +95,7 @@ def main():
             logger.warning(f"W&B init failed, continuing without tracking: {e}")
             config["training"]["report_to"] = "none"
 
-    # ---------- Step 5: Training Arguments banao ----------
+    # ---------- Step 5: Training Arguments ----------
     train_cfg = config["training"]
     training_args = TrainingArguments(
         output_dir=train_cfg["output_dir"],
@@ -122,7 +122,7 @@ def main():
     # ---------- Step 6: Data Collator ----------
     data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
 
-    # ---------- Step 7: Trainer banao aur train karo ----------
+    # ---------- Step 7: make the trainer and start training ----------
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -135,7 +135,7 @@ def main():
     trainer.train()
     logger.info("Training complete!")
 
-    # ---------- Step 8: Final model save karo ----------
+    # ---------- Step 8: save the final model ----------
     final_path = os.path.join(train_cfg["output_dir"], "final_model")
     trainer.model.save_pretrained(final_path)
     tokenizer.save_pretrained(final_path)
