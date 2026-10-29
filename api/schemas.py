@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 
+
 class TextGenerationRequest(BaseModel):
     prompt: str = Field(..., description="Input prompt/instruction text")
     max_new_tokens: int = Field(256, description="Maximum tokens to generate", ge=1, le=2048)
