@@ -154,7 +154,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### 1. Fine-Tune an LLM (QLoRA)
 
