@@ -8,7 +8,7 @@ A production-grade pipeline for fine-tuning and quantizing open-source Large Lan
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Architecture](#architecture)
