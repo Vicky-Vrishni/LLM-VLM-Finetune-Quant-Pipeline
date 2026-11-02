@@ -6,7 +6,7 @@ model:
   base_model: "Qwen/Qwen2-VL-2B-Instruct"   # HuggingFace model id
   trust_remote_code: true
   use_cache: false
-
+ 
 quantization:
   load_in_4bit: true
   bnb_4bit_quant_type: "nf4"
