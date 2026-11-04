@@ -8,7 +8,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
 from contextlib import asynccontextmanager
-
+ 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "inference"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src", "utils"))
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
