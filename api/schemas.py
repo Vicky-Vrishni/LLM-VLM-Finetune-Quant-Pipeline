@@ -10,7 +10,7 @@ class TextGenerationRequest(BaseModel):
     top_p: float = Field(0.9, description="Nucleus sampling threshold", ge=0.0, le=1.0)
     do_sample: bool = Field(True, description="Whether to use sampling or greedy decoding")
 
-    class Config:
+    class Config: 
         json_schema_extra = {
             "example": {
                 "prompt": "Explain quantum computing in simple terms.",
