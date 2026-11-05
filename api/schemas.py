@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-
+ 
 
 class TextGenerationRequest(BaseModel):
     prompt: str = Field(..., description="Input prompt/instruction text")
