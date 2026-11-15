@@ -44,5 +44,3 @@ class HealthCheckResponse(BaseModel):
     status: str = Field(..., description="API status")
     model_loaded: bool = Field(..., description="Whether the model is loaded and ready")
     model_type: Optional[str] = Field(None, description="Type of model loaded (llm/vlm)")
-
-
