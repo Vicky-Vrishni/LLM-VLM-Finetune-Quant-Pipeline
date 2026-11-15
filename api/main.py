@@ -86,7 +86,6 @@ def health_check():
         model_type=MODEL_TYPE if model_engine is not None else None,
     )
 
-
 @app.post("/generate/text", response_model=TextGenerationResponse, tags=["LLM"])
 def generate_text(request: TextGenerationRequest):
     if model_engine is None or MODEL_TYPE != "llm":
