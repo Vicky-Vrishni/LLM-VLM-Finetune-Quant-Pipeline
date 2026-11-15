@@ -47,7 +47,7 @@ async def lifespan(app: FastAPI):
         logger.error(f"Failed to load model: {e}")
         model_engine = None
 
-    yield  # API requests are served here
+    yield  # API is served here
 
     logger.info("Shutting down API server.")
 
