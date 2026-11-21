@@ -24,7 +24,7 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
 
-  # ---------- Gradio Demo UI ----------
+  # Gradio Demo UI 
   demo:
     build:
       context: ..
