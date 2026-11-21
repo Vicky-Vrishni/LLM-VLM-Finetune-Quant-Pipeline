@@ -117,7 +117,7 @@ with gr.Blocks(title="LLM/VLM Fine-Tuning & Quantization Pipeline", theme=gr.the
             inputs=llm_prompt_input,
         )
 
-    with gr.Tab("🖼️ Vision + Text (VLM)"):
+    with gr.Tab(" Vision + Text (VLM)"):
         with gr.Row():
             with gr.Column(scale=1):
                 vlm_image_input = gr.Image(label="Upload Image", type="pil")
