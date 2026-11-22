@@ -22,7 +22,7 @@ A production-grade pipeline for fine-tuning and quantizing open-source Large Lan
 
 ---
 
-## 🎯 Overview
+## Overview
 
 This project implements a complete LLMOps pipeline that takes an open-source LLM/VLM from a pretrained base model all the way to a deployable, quantized inference service. It is designed to mirror real-world production workflows used by ML engineering teams working with foundation models.
 
