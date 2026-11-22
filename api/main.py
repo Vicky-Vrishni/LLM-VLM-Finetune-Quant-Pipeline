@@ -91,7 +91,7 @@ def generate_text(request: TextGenerationRequest):
     if model_engine is None or MODEL_TYPE != "llm":
         raise HTTPException(
             status_code=503,
-            detail="LLM model is not loaded. Check server configuration (MODEL_TYPE=llm).",
+            detail=" (MODEL_TYPE=llm).",
         )
 
     start_time = time.time()
