@@ -36,7 +36,7 @@ class VLMGenerationRequest(BaseModel):
 
 class VLMGenerationResponse(BaseModel):
     generated_text: str = Field(..., description="Model ka generated response")
-    prompt: str = Field(..., description="Original input prompt")
+    prompt: str = Field(..., description=" ")
     latency_ms: float = Field(..., description="Generation time in milliseconds")
 
 
