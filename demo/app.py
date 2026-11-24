@@ -71,9 +71,7 @@ def generate_vlm_response(image: Image.Image, prompt: str, max_new_tokens: int) 
 
     return f"{response}\n\n---\n*Generated in {latency:.2f}s*"
 
-# ==========================================================
 # Gradio UI Layout
-# ==========================================================
 
 with gr.Blocks(title="LLM/VLM Fine-Tuning & Quantization Pipeline", theme=gr.themes.Soft()) as demo:
 
