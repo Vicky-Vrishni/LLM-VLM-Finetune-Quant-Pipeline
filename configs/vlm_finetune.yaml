@@ -1,5 +1,6 @@
 # VLM (Vision-Language Model) Fine-Tuning Configuration
 
+
 model:
   base_model: "Qwen/Qwen2-VL-2B-Instruct"   # HuggingFace model id
   trust_remote_code: true
