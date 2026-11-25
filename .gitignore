@@ -16,9 +16,6 @@ outputs/
 *.pth
 checkpoints/
 
-# ===========================================
-# Datasets (locally cache hote hain - Git me nahi rakhte)
-# ===========================================
 data/raw/
 data/processed/
 *.csv
