@@ -8,10 +8,6 @@ venv/
 ENV/
 *.egg-info/
 
-# ===========================================
-# Model outputs & checkpoints (bohot bade hote hain - Git me nahi rakhte)
-# ===========================================
-
 outputs/
 *.gguf
 *.bin
